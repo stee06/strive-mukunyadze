@@ -1,0 +1,62 @@
+public class Main {
+    public static void main(String[] args) {
+
+        staff staff1=new staff();
+        salaryextends salary=new salaryextends();
+        staff1.initialize1("New","cp");
+        staff1.initialize("strive","mukunyadze","dereniowa","02776","warsaw");
+        System.out.println("The salary is: "+salary.salaryTopay(10,20));
+        System.out.println("The salary of overtime: "+salary.salaryOverTime(3,23));
+        System.out.println("The Bonus is: "+Salary.Bonus(5));
+
+    }
+}
+
+class person{
+    public String surname,firstname,street,Zipcode,city;
+
+    public void initialize(String Surname, String firstname, String street, String zipcode, String city) {
+        surname = Surname;
+        this.firstname = firstname;
+        this.street = street;
+        Zipcode = zipcode;
+        this.city = city;
+    }
+
+
+     public void print(){
+         System.out.print(this.surname+" "+this.firstname+" "+this.street+" "+this.Zipcode+" "+this.city);
+     }
+
+}
+
+class staff extends person{
+    public String position;
+    public String  education;
+    public void initialize1(String position,String education){
+        this.position=position;
+        this.education=education;
+    }
+    public void print1(){
+        System.out.print(position+" "+education);
+    }
+}
+interface Salary{
+    int salaryTopay(int Hours,int rate);
+   default int salaryOverTime(int Hoursover,int salaryperHour){
+       return Hoursover*salaryperHour;
+   }
+    static int Bonus(int YearsofExperience){
+        return 100;
+    }
+
+}
+
+class salaryextends implements Salary{
+     public int salaryTopay(int Hours,int rate){
+         return (Hours*rate);
+     }
+
+}
+
+
